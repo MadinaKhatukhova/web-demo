@@ -1,5 +1,7 @@
 package pro.sky.web_demo.repository;
 
 
-public interface FacultyRepository extends JpaRepository{
+import pro.sky.web_demo.model.Faculty;
+
+public interface FacultyRepository extends JpaRepository<Faculty, Long> {
 }
