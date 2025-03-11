@@ -42,6 +42,29 @@
 		</dependency>
 	</dependencies>
 
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+
+
+	spring:
+	datasource:
+	driver-class-name: org.postgresql.Driver
+	url: jdbc:postgresql://localhost:5432/example_db
+	username: example_user
+	password: secret_password
+	jpa:
+	properties:
+	hibernate:
+	dialect: org.hibernate.dialect.PostgreSQL9Dialect
+
+	spring.datasource.driver-class-name=org.postgresql.Driver
+	spring.datasource.url=jdbc:postgresql://localhost:5432/devmark_ru
+	spring.datasource.username=devmark
+	spring.datasource.password=secret_password
+	spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL9Dialect
+
 	<build>
 		<plugins>
 			<plugin>
@@ -51,4 +74,9 @@
 		</plugins>
 	</build>
 
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>42.3.2</version>
+	</dependency>
 </project>
