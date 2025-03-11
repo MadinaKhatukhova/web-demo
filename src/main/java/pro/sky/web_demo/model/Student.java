@@ -18,6 +18,9 @@ public class Student {
 
     private int age;
 
+    @ManyToOne
+    private Faculty faculty;
+
     public Student() {
 
     }
