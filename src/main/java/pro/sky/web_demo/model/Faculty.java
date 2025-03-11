@@ -1,6 +1,7 @@
 package pro.sky.web_demo.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Faculty {
@@ -12,6 +13,11 @@ public class Faculty {
     private String name;
 
     private String color;
+
+    @OneToMany
+    private Set<Student> students;
+
+
 
     public Faculty(){
 
