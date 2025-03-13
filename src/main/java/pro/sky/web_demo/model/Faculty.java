@@ -1,6 +1,12 @@
 package pro.sky.web_demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Faculty {
@@ -13,9 +19,18 @@ public class Faculty {
 
     private String color;
 
-    public Faculty(){
+    @OneToMany
+    private Set<Student> students;
+
+    public Faculty() {
 
     }
+
+    public Faculty(String name, String color) {
+        this.name = name;
+        this.color = color;
+    }
+
 
     public long getId() {
         return id;

@@ -1,5 +1,9 @@
 package pro.sky.web_demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
 @Entity
@@ -16,6 +20,7 @@ public class Student {
     public Student() {
 
     }
+
     public Student(String name, int age) {
         this.name = name;
         this.age = age;
