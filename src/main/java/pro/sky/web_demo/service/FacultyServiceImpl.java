@@ -39,6 +39,21 @@ public class FacultyServiceImpl implements FacultyService {
         facultyRepository.deleteById(id);
     }
 
+    @Override
+    public Object getFacultyById(Long id) {
+        return null;
+    }
+
+    @Override
+    public Collection<Faculty> getFilteredByColorOrName(String color, String name) {
+        return List.of();
+    }
+
+    @Override
+    public Collection<Faculty> getAllFaculties() {
+        return List.of();
+    }
+
     public Collection<Faculty> getByAge(Integer min, Integer max) { return List.of();}
 }
 
