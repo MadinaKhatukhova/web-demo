@@ -1,44 +1,18 @@
 package pro.sky.web_demo.service;
 
 import pro.sky.web_demo.model.Faculty;
-import pro.sky.web_demo.model.Student;
 
-import java.util.Collection;
+public interface FacultyService {
 
-public abstract class FacultyService {
-    public Object getFacultyById(long l) {
-        return null;
-    }
+    Faculty createFaculty(Faculty faculty);
 
-    public Faculty updateFaculty(double v, Faculty faculty) {
-        return faculty;
-    }
+    Faculty getFaculty();
 
-    public Faculty createFaculty(Faculty faculty) {
-        return faculty;
-    }
+    Faculty getFaculty(Long id, Faculty faculty);
 
-    public Collection<Faculty> getFilteredByColorOrName(String color, String name) {
-        return java.util.List.of();
-    }
+    Faculty updateFaculty(Long id, Faculty faculty);
 
-    public Collection<Faculty> getAllFaculties() {
-        return java.util.List.of();
-    }
+    void removeFaculty(Long id);
 
-    public abstract Student createFaculty(Long studentId, Faculty faculty);
 
-    public abstract Student getStudent(Long id);
-
-    public abstract Student getFaculty(Long id);
-
-    public abstract Student updateStudent(Long id, Student student);
-
-    public abstract Student updateFaculty(Long id, Student student);
-
-    public abstract Student updateFaculty(Long id, Faculty faculty);
-
-    public abstract void removeStudent(Long id);
-
-    public abstract Collection<Student> getByColor(Integer min, Integer max);
 }
