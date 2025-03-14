@@ -1,17 +1,17 @@
 package pro.sky.web_demo.service;
 
-import pro.sky.web_demo.exception.StudentNotFoundException;
+import org.apache.catalina.Store;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.model.Student;
-import pro.sky.web_demo.repository.JpaRepository;
 import pro.sky.web_demo.repository.StudentRepository;
-
+import pro.sky.web_demo.repository.FacultyRepository;
 import java.util.Collection;
 import java.util.List;
 
 public class FacultyServiceImpl extends FacultyService {
 
     private StudentRepository studentRepository;
+    private Store facultyRepository;
 
 
     @Override
@@ -30,8 +30,7 @@ public class FacultyServiceImpl extends FacultyService {
     }
 
     @Override
-    public Student updateStudent(Long id, Student student) {
-        return null;
+    public Student updateStudent(Long id, Student student) {return null;
     }
 
     @Override
