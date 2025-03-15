@@ -3,6 +3,7 @@ package pro.sky.web_demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import org.apache.catalina.Session;
 
 import java.util.Objects;
@@ -22,7 +23,6 @@ public class Student {
     private Faculty faculty;
 
     public Student() {
-
     }
 
     public Student(String name, int age) {

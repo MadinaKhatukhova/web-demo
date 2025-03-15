@@ -19,7 +19,7 @@ public class FacultyController{
     public Collection<Faculty> getAllFaculties() { return facultyService.getAllFaculties(); }
 
 
-    @GetMapping(params = {"color", "nate"})
+    @GetMapping(params = {"color", "name"})
     public Collection<Faculty> getFiltered(@RequestParam String color, @RequestParam String name){
         return facultyService.getFilteredByColorOrName(color, name);
     }
