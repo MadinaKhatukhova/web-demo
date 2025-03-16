@@ -3,6 +3,7 @@ package pro.sky.web_demo.service;
 import pro.sky.web_demo.model.Student;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface StudentService {
 
@@ -10,7 +11,7 @@ public interface StudentService {
 
     Student getStudent(Long id);
 
-    Student getStudent(Long id, Student student);
+    Optional<Student> getStudent(Long id, Student student);
 
     Student updateStudent(Long id, Student student);
 

@@ -1,11 +1,11 @@
 package pro.sky.web_demo.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.web_demo.exception.StudentNotFoundException;
 import pro.sky.web_demo.model.Student;
 import pro.sky.web_demo.repository.StudentRepository;
 
 import java.util.Collection;
-import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -22,14 +22,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudent(Long id) {
-        return null;
+    public Student getStudent(Long id, Student student) {
+        return studentRepository.findById();
     }
 
     @Override
-    public Student getStudent(Long id, Student student) {
-        return studentRepository.save(student);
-
+    public Student getStudent(Long id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student wasn't found"));
     }
 
     @Override
@@ -45,6 +45,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Collection<Student> getByAge(Integer min, Integer max) {
-        return List.of();
+        return studentRepository.findByAgeBetween(min, max);
     }
 }
