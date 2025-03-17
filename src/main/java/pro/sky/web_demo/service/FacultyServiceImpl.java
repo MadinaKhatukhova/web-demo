@@ -23,7 +23,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty getFaculty() {
-        return null;
+        return facultyRepository.save(getFaculty());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Object getFacultyById(Long id) {
-        return null;
+        return facultyRepository.save(getFaculty());
     }
 
     @Override
