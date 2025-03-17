@@ -25,10 +25,8 @@ public class FacultyControllerIT {
         Faculty newFaculty = testRestTemplate.postForEntity("http://localhost:"+port+"faculties", new Faculty("Griffindor", "Brown"), Faculty.class).getBody();
 
 
-
         //Act
         ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.getForEntity("http://localhost:"+port+"faculties/"+newFaculty.getId(), Faculty.class);
-
 
         //Assert
         assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);

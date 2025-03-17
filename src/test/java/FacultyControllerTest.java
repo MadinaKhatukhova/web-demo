@@ -16,19 +16,15 @@ import pro.sky.web_demo.service.FacultyService;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(FacultyController.class)
 public class FacultyControllerTest {
-    MockMvc mockMvc;
-    @BeforeEach
-    void setup() {
-    }
 
     @Autowired
-    private MockitoBean mockitoBean;
+    private MockMvc mockMvc;
 
     @MockitoBean
     private FacultyService facultyService;
