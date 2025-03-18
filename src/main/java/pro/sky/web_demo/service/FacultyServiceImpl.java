@@ -55,6 +55,11 @@ public class FacultyServiceImpl implements FacultyService {
     public Collection<Faculty> getAllFaculties() {
         return List.of();
     }
+
+    @Override
+    public Faculty findFaculty(Long id) {
+        return null;
+    }
 }
 
 

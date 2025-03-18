@@ -19,4 +19,6 @@ public interface StudentService {
 
 
     Collection<Student> getByAge(Integer min, Integer max);
+
+    Student findStudent(Long id);
 }

@@ -1,9 +1,8 @@
 package pro.sky.web_demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.model.Student;
 import pro.sky.web_demo.service.StudentService;
 
@@ -21,5 +20,14 @@ public class StudentController {
 
     public Collection<Student> getByAge(@RequestParam Integer min, @RequestParam Integer max) {
         return studentService.getByAge(min,max);
+    }
+
+    @GetMapping("{id}/faculty")
+    public ResponseEntity<Faculty> getStudentFaculty(@PathVariable Long id) {
+        Student student = studentService.findStudent(id);
+        if (student == null || student.getFaculty() == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(student.getFaculty());
     }
 }

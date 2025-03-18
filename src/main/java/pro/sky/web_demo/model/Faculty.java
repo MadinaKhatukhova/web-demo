@@ -2,12 +2,11 @@ package pro.sky.web_demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import org.springframework.data.annotation.Id;
 
+import java.util.Collection;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Faculty {
@@ -21,7 +20,7 @@ public class Faculty {
     private String color;
 
     @OneToMany
-    private Set<Student> students;
+    private Collection<Student> students;
 
     public Faculty(){
 
@@ -61,5 +60,14 @@ public class Faculty {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, color);
+    }
+
+
+    public Collection<Student> getStudents(){
+        return students;
+    }
+
+    public void setStudents(Collection<Student> students) {
+        this.students = students;
     }
 }

@@ -1,7 +1,9 @@
 package pro.sky.web_demo.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.web_demo.model.Faculty;
+import pro.sky.web_demo.model.Student;
 import pro.sky.web_demo.service.FacultyService;
 
 import java.util.Collection;
@@ -38,6 +40,14 @@ public class FacultyController{
     public Faculty updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty) {
         return facultyService.updateFaculty(id, faculty);
 
+    }
+
+    public ResponseEntity<Collection<Student>> getFacultyStudents(@PathVariable Long id) {
+        Faculty faculty = facultyService.findFaculty(id);
+        if (faculty == null || faculty.getStudents() == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(faculty.getStudents());
     }
 
 }

@@ -22,4 +22,6 @@ public interface FacultyService {
     Collection<Faculty> getFilteredByColorOrName(String color, String name);
 
     Collection<Faculty> getAllFaculties();
+
+    Faculty findFaculty(Long id);
 }
