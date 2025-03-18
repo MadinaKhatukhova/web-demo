@@ -6,6 +6,7 @@ import pro.sky.web_demo.model.Student;
 import pro.sky.web_demo.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -22,8 +23,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudent(Long id, Student student) {
-        return studentRepository.findById();
+    public Optional<Student> getStudent(Long id, Student student) {
+        return Optional.ofNullable(studentRepository.findById());
     }
 
     @Override
