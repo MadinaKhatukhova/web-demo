@@ -1,5 +1,6 @@
 package pro.sky.web_demo.service;
 
+import io.micrometer.observation.Observation;
 import org.springframework.stereotype.Service;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.repository.FacultyRepository;
@@ -58,7 +59,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty findFaculty(Long id) {
-        return null;
+        return faculties.get(id);
     }
 }
 

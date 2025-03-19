@@ -51,6 +51,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findStudent(Long id) {
-        return null;
+        return students.get(id);
     }
 }
