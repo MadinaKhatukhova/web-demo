@@ -32,6 +32,12 @@ http://www.w3.org/2001/XMLSchema-instance ">
 	</properties>
 	<dependencies>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<dependencyManagement>
 			<dependencies>
 				<dependency>
@@ -71,6 +77,12 @@ http://www.w3.org/2001/XMLSchema-instance ">
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>pro.sky</groupId>
+			<artifactId>web-demo</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
