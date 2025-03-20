@@ -9,59 +9,59 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import pro.sky.web_demo.model.Faculty;
+import pro.sky.web_demo.model.Student;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FacultyControllerIT {
+public class StudentControllerIT {
     @LocalServerPort
     private int port;
 
     @Autowired
-    private FacultyController facultyController;
+    private StudentController studentController;
 
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    void contextLoads() throws Exception {
-        Assertions.assertThat(facultyController).isNotNull();
+    void contextLoads() {
+        Assertions.assertThat(studentController).isNotNull();
     }
 
     @Test
-    void getAllFaculties() {
+    void getAllStudents() {
         Assertions
                 .assertThat(restTemplate.getForObject("http://localhost:" + port, String.class))
                 .isNotNull();
     }
 
     @Test
-    void getFacultyById() {
+    void getStudentById() {
         Assertions
                 .assertThat(restTemplate.getForObject("http://localhost:" + port + "/1", String.class))
                 .isNotNull();
     }
 
     @Test
-    void createFaculty() {
+    void createStudent() {
         Assertions
                 .assertThat(restTemplate.postForObject("http://localhost:" + port,
-                        new Faculty("Gryffindor", "red"),
+                        new Student("John Lennon", 30),
                         String.class))
                 .isNotNull();
     }
 
     @Test
-    void editFaculty() {
-        final ResponseEntity<Faculty> response = restTemplate.exchange("http://localhost:" + port,
+    void editStudent() {
+        final ResponseEntity<Student> response = restTemplate.exchange("http://localhost:" + port,
                 HttpMethod.PUT,
-                new HttpEntity<>(new Faculty("Gryffindor", "red")),
-                Faculty.class);
+                new HttpEntity<>(new Student("John Lennon", 30)),
+                Student.class);
         Assertions.assertThat(response.getStatusCode()).isNotNull();
     }
 
     @Test
-    void deleteFaculty() {
+    void deleteStudent() {
         final ResponseEntity<Void> response = restTemplate.exchange("http://localhost:" + port + "/1",
                 HttpMethod.DELETE,
                 new HttpEntity<>(null),
@@ -69,6 +69,3 @@ public class FacultyControllerIT {
         Assertions.assertThat(response.getStatusCode()).isNotNull();
     }
 }
-
-
-

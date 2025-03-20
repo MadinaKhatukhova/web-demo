@@ -1,13 +1,14 @@
 package pro.sky.web_demo.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.web_demo.exception.FacultyNotFoundException;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.repository.FacultyRepository;
 import java.util.Collection;
 import java.util.List;
 
 @Service
-public class FacultyServiceImpl implements FacultyService {
+public abstract class FacultyServiceImpl implements FacultyService {
 
     private final FacultyRepository facultyRepository;
 
@@ -42,11 +43,6 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Object getFacultyById(Long id) {
-        return facultyRepository.save(getFaculty());
-    }
-
-    @Override
     public Collection<Faculty> getFilteredByColorOrName(String color, String name) {
         return List.of();
     }
@@ -57,8 +53,8 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Faculty findFaculty(Long id) {
-        return null;
+    public Faculty getFacultyById(Long id) {
+        return facultyRepository.findById(id).orElseThrow(() -> new FacultyNotFoundException());
     }
 }
 

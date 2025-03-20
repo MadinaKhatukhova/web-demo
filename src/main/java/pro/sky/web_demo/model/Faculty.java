@@ -2,8 +2,9 @@ package pro.sky.web_demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import org.springframework.data.annotation.Id;
+
 
 import java.util.Collection;
 import java.util.Objects;

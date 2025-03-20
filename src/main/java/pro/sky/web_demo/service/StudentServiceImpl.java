@@ -6,10 +6,9 @@ import pro.sky.web_demo.model.Student;
 import pro.sky.web_demo.repository.StudentRepository;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public abstract class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
 
@@ -23,14 +22,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Optional<Student> getStudent(Long id, Student student) {
-        return Optional.ofNullable(studentRepository.findById());
-    }
-
-    @Override
     public Student getStudent(Long id) {
         return studentRepository.findById(id)
-                .orElseThrow(() -> new StudentNotFoundException("Student wasn't found"));
+                .orElseThrow(() -> new StudentNotFoundException());
     }
 
     @Override
