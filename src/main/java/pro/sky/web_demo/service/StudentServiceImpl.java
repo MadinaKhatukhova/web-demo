@@ -23,8 +23,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Optional<Student> getStudent(Long id, Student student) {
-        return Optional.ofNullable(studentRepository.findById());
+    public Student getStudent(Long id, Student student) {
+        return studentRepository.save(student);
     }
 
     @Override
