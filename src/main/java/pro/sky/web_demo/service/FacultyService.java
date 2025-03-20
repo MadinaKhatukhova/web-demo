@@ -1,12 +1,17 @@
 package pro.sky.web_demo.service;
 
+import org.slf4j.LoggerFactory;
 import pro.sky.web_demo.model.Faculty;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public interface FacultyService {
+
+
+
     List<Faculty> findAll();
 
     Faculty createFaculty(Faculty faculty);
