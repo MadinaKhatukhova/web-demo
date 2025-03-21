@@ -17,5 +17,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     Student addStudent(Student student);
 
     Student editStudent(Student student);
+
+    Double findStudentsAverageAge();
 }
 

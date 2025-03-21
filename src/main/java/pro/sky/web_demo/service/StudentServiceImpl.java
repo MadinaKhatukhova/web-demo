@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -65,7 +66,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Double findStudentsAverageAge() {
-        return 0.0;
+        return studentRepository.findStudentsAverageAge();
     }
 
     @Override
@@ -75,12 +76,22 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<String> findStudentsWithNamesFromSymbol(String firstWord) {
-        return List.of();
+        return studentRepository
+                .findAll()
+                .stream()
+                .filter(s -> s.getName().startsWith(firstWord))
+                .map(s -> s.getName().toUpperCase())
+                .sorted(String::compareTo)
+                .collect(Collectors.toList());
     }
 
     @Override
     public OptionalDouble findStudentsAverageAge2() {
-        return OptionalDouble.empty();
+        return studentRepository
+                .findAll()
+                .stream()
+                .mapToDouble(Student::getAge)
+                .average();
     }
 
     @Override

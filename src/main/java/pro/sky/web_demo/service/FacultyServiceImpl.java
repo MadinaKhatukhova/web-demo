@@ -4,11 +4,12 @@ import org.springframework.stereotype.Service;
 import pro.sky.web_demo.exception.FacultyNotFoundException;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.repository.FacultyRepository;
-import pro.sky.web_demo.repository.StudentRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
@@ -91,12 +92,20 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Collection<Faculty> findByNameOrColorContainsIgnoreCase(String filter) {
-        return List.of();
+        return facultyRepository.findByNameOrColorContainsIgnoreCase(filter);
     }
 
     @Override
     public Optional<List<String>> findLongestFacultyNames() {
-        return Optional.empty();
+        return facultyRepository
+                .findAll()
+                .stream()
+                .map(Faculty::getName)
+                .collect(Collectors.groupingBy(String::length))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByKey())
+                .map(Map.Entry::getValue);
     }
 }
 

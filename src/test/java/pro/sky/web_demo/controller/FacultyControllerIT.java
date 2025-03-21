@@ -30,42 +30,28 @@ public class FacultyControllerIT {
 
     @Test
     void getAllFaculties() {
-        Assertions
-                .assertThat(restTemplate.getForObject("http://localhost:" + port, String.class))
-                .isNotNull();
+        Assertions.assertThat(restTemplate.getForObject("http://localhost:" + port, String.class)).isNotNull();
     }
 
     @Test
     void getFacultyById() {
-        Assertions
-                .assertThat(restTemplate.getForObject("http://localhost:" + port + "/1", String.class))
-                .isNotNull();
+        Assertions.assertThat(restTemplate.getForObject("http://localhost:" + port + "/1", String.class)).isNotNull();
     }
 
     @Test
     void createFaculty() {
-        Assertions
-                .assertThat(restTemplate.postForObject("http://localhost:" + port,
-                        new Faculty("Gryffindor", "red"),
-                        String.class))
-                .isNotNull();
+        Assertions.assertThat(restTemplate.postForObject("http://localhost:" + port, new Faculty("Gryffindor", "red"), String.class)).isNotNull();
     }
 
     @Test
     void editFaculty() {
-        final ResponseEntity<Faculty> response = restTemplate.exchange("http://localhost:" + port,
-                HttpMethod.PUT,
-                new HttpEntity<>(new Faculty("Gryffindor", "red")),
-                Faculty.class);
+        final ResponseEntity<Faculty> response = restTemplate.exchange("http://localhost:" + port, HttpMethod.PUT, new HttpEntity<>(new Faculty("Gryffindor", "red")), Faculty.class);
         Assertions.assertThat(response.getStatusCode()).isNotNull();
     }
 
     @Test
     void deleteFaculty() {
-        final ResponseEntity<Void> response = restTemplate.exchange("http://localhost:" + port + "/1",
-                HttpMethod.DELETE,
-                new HttpEntity<>(null),
-                Void.class);
+        final ResponseEntity<Void> response = restTemplate.exchange("http://localhost:" + port + "/1", HttpMethod.DELETE, new HttpEntity<>(null), Void.class);
         Assertions.assertThat(response.getStatusCode()).isNotNull();
     }
 }
