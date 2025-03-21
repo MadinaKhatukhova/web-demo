@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
-public class FacultyServiceImpl implements FacultyService {
+public abstract class FacultyServiceImpl implements FacultyService {
 
     private final FacultyRepository facultyRepository;
 
@@ -16,19 +16,8 @@ public class FacultyServiceImpl implements FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
-
     @Override
     public Faculty createFaculty(Faculty faculty) {
-        return facultyRepository.save(faculty);
-    }
-
-    @Override
-    public Faculty getFaculty() {
-        return facultyRepository.save(getFaculty());
-    }
-
-    @Override
-    public Faculty getFaculty(Long id, Faculty faculty) {
         return facultyRepository.save(faculty);
     }
 
@@ -49,18 +38,16 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Collection<Faculty> getFilteredByColorOrName(String color, String name) {
-        return List.of();
+        return facultyRepository.getFilteredByColorOrName(color, name);
     }
 
     @Override
     public Collection<Faculty> getAllFaculties() {
-        return List.of();
+        return facultyRepository.getAllFaculties();
     }
 
-    @Override
-    public Faculty findFaculty(Long id) {
-        return faculties.get(id);
-    }
+
+
 }
 
 

@@ -36,12 +36,13 @@ public class FacultyController{
         return (Faculty) facultyService.getFacultyById(id);
     }
 
-    @PutMapping("/{1d)")
+    @PutMapping("/{1d}")
     public Faculty updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty) {
         return facultyService.updateFaculty(id, faculty);
 
     }
 
+    @GetMapping("/{id}")
     public ResponseEntity<Collection<Student>> getFacultyStudents(@PathVariable Long id) {
         Faculty faculty = facultyService.findFaculty(id);
         if (faculty == null || faculty.getStudents() == null) {

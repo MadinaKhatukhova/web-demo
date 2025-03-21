@@ -6,10 +6,12 @@ import pro.sky.web_demo.model.Student;
 import pro.sky.web_demo.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public abstract class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
 
@@ -19,11 +21,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student createStudent(Long facultyId, Student student) {
-        return studentRepository.save(student);
-    }
-
-    @Override
-    public Student getStudent(Long id, Student student) {
         return studentRepository.save(student);
     }
 
@@ -46,11 +43,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Collection<Student> getByAge(Integer min, Integer max) {
-        return studentRepository.findByAgeBetween(min, max);
+        return Collections.singleton((Student) studentRepository.getById(max, min));
     }
 
-    @Override
-    public Student findStudent(Long id) {
-        return students.get(id);
-    }
+
 }
