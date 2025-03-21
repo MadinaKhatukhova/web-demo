@@ -50,3 +50,4 @@ public interface StudentService {
 
     Object findAll();
 }
+
