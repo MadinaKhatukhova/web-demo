@@ -13,7 +13,9 @@ import pro.sky.web_demo.model.Faculty;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
 public class FacultyControllerIT {
+
     @LocalServerPort
     private int port;
 
@@ -24,10 +26,10 @@ public class FacultyControllerIT {
     private TestRestTemplate restTemplate;
 
     @Test
+
     void contextLoads() throws Exception {
         Assertions.assertThat(facultyController).isNotNull();
     }
-
     @Test
     void getAllFaculties() {
         Assertions.assertThat(restTemplate.getForObject("http://localhost:" + port, String.class)).isNotNull();
@@ -54,7 +56,7 @@ public class FacultyControllerIT {
         final ResponseEntity<Void> response = restTemplate.exchange("http://localhost:" + port + "/1", HttpMethod.DELETE, new HttpEntity<>(null), Void.class);
         Assertions.assertThat(response.getStatusCode()).isNotNull();
     }
-}
 
+}
 
 

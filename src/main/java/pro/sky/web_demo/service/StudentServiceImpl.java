@@ -3,6 +3,7 @@ package pro.sky.web_demo.service;
 import org.apache.catalina.Store;
 import org.springframework.stereotype.Service;
 import pro.sky.web_demo.exception.StudentNotFoundException;
+import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.model.Student;
 import pro.sky.web_demo.repository.StudentRepository;
 
@@ -121,16 +122,18 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Collection<Student> findByAgeBetween(Integer age1, Integer age2) {
-        return List.of();
+        return studentRepository.findByAgeBetween(age1, age2);
     }
 
     @Override
     public Collection<Student> findByAge(Integer age) {
-        return List.of();
+        return studentRepository.findByAge(age);
     }
 
     @Override
     public Object findAll() {
         return studentRepository.findAll();
     }
+
+
 }

@@ -75,7 +75,7 @@ public class StudentControllerTest {
 
     @Test
     public void getStudentByIdWhenStudentDoesNotExist() throws Exception {
-        when(studentService.findStudent(anyLong())).thenThrow(StudentNotFoundException.class);
+        when(studentService.findStudent(anyLong())).thenThrow(new StudentNotFoundException());
         mockMvc.perform(MockMvcRequestBuilders.get("/student/1"))
                 .andDo(print())
                 .andExpect(status().isNotFound());

@@ -5,37 +5,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.model.Student;
-import pro.sky.web_demo.service.FacultyService;
 import pro.sky.web_demo.service.StudentService;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.OptionalDouble;
 
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
     private final StudentService studentService;
-    private final FacultyService facultyService;
 
-    public StudentController(StudentService studentService, FacultyService facultyService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
-        this.facultyService = facultyService;
     }
 
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> students = (List<Student>) studentService.findAll();
-        if (students == null || students.isEmpty()) {
+        List<Student> faculties = (List<Student>) studentService.findAll();
+        if (faculties == null || faculties.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(students);
+        return ResponseEntity.ok(faculties);
     }
-
-    @GetMapping(value = "{studentId}")
-    public ResponseEntity<Student> getStudentById(@PathVariable Long studentId) {
-        Student student = studentService.findStudent(studentId);
+    @GetMapping("{id}")
+    public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
+        Student student = studentService.findStudent(id);
         if (student == null) {
             return ResponseEntity.notFound().build();
         }
@@ -43,16 +38,12 @@ public class StudentController {
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student,
-                                 @RequestParam(name = "faculty_id") Long faculty_id) {
-        student.setFaculty(facultyService.findFaculty(faculty_id));
+    public Student createStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
     @PutMapping
-    public ResponseEntity<Student> editStudent(@RequestBody Student student,
-                                               @RequestParam(name = "faculty_id") Long faculty_id) {
-        student.setFaculty(facultyService.findFaculty(faculty_id));
+    public ResponseEntity<Student> editStudent(@RequestBody Student student) {
         Student foundStudent = studentService.editStudent(student);
         if (foundStudent == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -60,13 +51,13 @@ public class StudentController {
         return ResponseEntity.ok(foundStudent);
     }
 
-    @DeleteMapping(value = "{studentId}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long studentId) {
-        studentService.deleteStudent(studentId);
+    @DeleteMapping("{studentId}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(value = "age", params = "age")
+    @GetMapping(params = "age")
     public ResponseEntity<Collection<Student>> findByAge(@RequestParam(name = "age") Integer age) {
         Collection<Student> students = studentService.findByAge(age);
         if (students == null || students.isEmpty()) {
@@ -75,7 +66,7 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
-    @GetMapping(value = "age_between", params = {"age1", "age2"})
+    @GetMapping(params = {"age1", "age2"})
     public ResponseEntity<Collection<Student>> findByAgeBetween(@RequestParam(name = "age1") Integer age1,
                                                                 @RequestParam(name = "age2") Integer age2) {
         Collection<Student> students = studentService.findByAgeBetween(age1, age2);
@@ -85,7 +76,7 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
-    @GetMapping(value = "{studentId}/faculty")
+    @GetMapping("{studentId}/faculty")
     public ResponseEntity<Faculty> getStudentsFaculty(@PathVariable Long studentId) {
         Faculty faculty = studentService.findStudent(studentId).getFaculty();
         if (faculty == null) {
@@ -94,56 +85,5 @@ public class StudentController {
         return ResponseEntity.ok(faculty);
     }
 
-    @GetMapping(value = "/count")
-    public ResponseEntity<Long> findStudentsCount() {
-        return ResponseEntity.ok(studentService.findStudentsCount());
-    }
 
-    @GetMapping(value = "/average_age")
-    public ResponseEntity<Double> findStudentsAverageAge() {
-        return ResponseEntity.ok(studentService.findStudentsAverageAge());
-    }
-
-    @GetMapping(value = "/last", params = "num")
-    public ResponseEntity<Collection<Student>> findLastStudents(@RequestParam(name = "num") Integer num) {
-        if (num <= 0) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Collection<Student> students = studentService.findLastStudents(num);
-        if (students == null || students.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(students);
-    }
-
-    @GetMapping(value = "/first_symbol", params = "firstSymbol")
-    public ResponseEntity<List<String>> findStudentsWithNamesFromSymbol(@RequestParam(name = "firstSymbol") String firstWord) {
-        List<String> studentsNames = studentService.findStudentsWithNamesFromSymbol(firstWord);
-        if (studentsNames == null || studentsNames.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(studentsNames);
-    }
-
-    @GetMapping(value = "/average_age2")
-    public ResponseEntity<Double> findStudentsAverageAge2() {
-        OptionalDouble result = studentService.findStudentsAverageAge2();
-        if (result.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(result.getAsDouble());
-    }
-
-    @GetMapping(value = "print-parallel")
-    public ResponseEntity<Void> print_parallel() {
-        studentService.printParallel();
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping(value = "print-synchronized")
-    public ResponseEntity<Void> print_synchronized() {
-        studentService.printSynchronized();
-        return ResponseEntity.ok().build();
-    }
 }

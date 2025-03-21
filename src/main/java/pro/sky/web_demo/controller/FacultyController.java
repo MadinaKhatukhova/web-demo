@@ -20,6 +20,7 @@ public class FacultyController{
 
     public FacultyController (FacultyService facultyService) { this.facultyService = facultyService; }
 
+
     @GetMapping
     public ResponseEntity<List<Faculty>> getAllFaculties() {
         List<Faculty> faculties = facultyService.findAll();
@@ -29,7 +30,7 @@ public class FacultyController{
         return ResponseEntity.ok(faculties);
     }
 
-    @GetMapping(value = "{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id) {
         Faculty faculty = facultyService.findFaculty(id);
         if (faculty == null) {
@@ -58,7 +59,7 @@ public class FacultyController{
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(value = "color", params = "color")
+    @GetMapping(params = "color")
     public ResponseEntity<Collection<Faculty>> findByColor(@RequestParam(name = "color") String color) {
         Collection<Faculty> faculties = facultyService.findByColor(color);
         if (faculties == null || faculties.isEmpty()) {
@@ -67,7 +68,7 @@ public class FacultyController{
         return ResponseEntity.ok(faculties);
     }
 
-    @GetMapping(value = "filter", params = "filter")
+    @GetMapping(params = "filter")
     public ResponseEntity<Collection<Faculty>> findByNameOrColorContainsIgnoreCase(
             @RequestParam(name = "filter") String filter) {
         Collection<Faculty> faculties = facultyService.findByNameOrColorContainsIgnoreCase(filter);
@@ -77,7 +78,7 @@ public class FacultyController{
         return ResponseEntity.ok(faculties);
     }
 
-    @GetMapping(value = "{facultyId}/students")
+    @GetMapping("{facultyId}/students")
     public ResponseEntity<List<Student>> getFacultyStudents(@PathVariable Long facultyId) {
         List<Student> students = (List<Student>) facultyService.findFaculty(facultyId).getStudents();
         if (students == null || students.isEmpty()) {
@@ -86,7 +87,7 @@ public class FacultyController{
         return ResponseEntity.ok(students);
     }
 
-    @GetMapping(value = "/longest_names")
+    @GetMapping("/longest_names")
     public ResponseEntity<List<String>> getLongestNames() {
         Optional<List<String>> result = facultyService.findLongestFacultyNames();
         if (result.isEmpty() || result.get().isEmpty()) {
