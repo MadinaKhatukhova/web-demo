@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToOne;
 
 import java.util.Objects;
 
+
 @Entity
 public class Student {
 
