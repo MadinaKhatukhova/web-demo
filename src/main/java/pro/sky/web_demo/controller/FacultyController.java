@@ -10,15 +10,16 @@ import pro.sky.web_demo.service.FacultyService;
 import java.util.Collection;
 import java.util.List;
 
-
 @RestController
-@RequestMapping ("/faculty")
-public class FacultyController{
+@RequestMapping("/faculty")
+public class FacultyController {
 
     private final FacultyService facultyService;
 
 
-    public FacultyController (FacultyService facultyService) { this.facultyService = facultyService; }
+    public FacultyController(FacultyService facultyService) {
+        this.facultyService = facultyService;
+    }
 
 
     @GetMapping

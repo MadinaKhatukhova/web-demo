@@ -2,6 +2,7 @@ package pro.sky.web_demo.controller;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -9,27 +10,28 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pro.sky.web_demo.model.Faculty;
 
-
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 
-public class FacultyControllerIT {
+public class FacultyControllerTestRestTemplate {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private FacultyController facultyController;
-
-    @Autowired
     private TestRestTemplate restTemplate;
 
-    @Test
+    @Autowired
+    private FacultyController facultyController;
 
+    @Test
     void contextLoads() throws Exception {
         Assertions.assertThat(facultyController).isNotNull();
     }
+
     @Test
     void getAllFaculties() {
         Assertions.assertThat(restTemplate.getForObject("http://localhost:" + port, String.class)).isNotNull();
