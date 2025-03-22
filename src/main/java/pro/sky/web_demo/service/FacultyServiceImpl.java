@@ -7,9 +7,6 @@ import pro.sky.web_demo.repository.FacultyRepository;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
@@ -22,52 +19,12 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public List<Faculty> findAll() {
-        return List.of();
-    }
-
-    @Override
-    public Faculty createFaculty(Faculty faculty) {
-        return facultyRepository.createFaculty(faculty);
-    }
-
-    @Override
-    public Faculty getFaculty() {
-        return facultyRepository.getFaculty();
-    }
-
-    @Override
-    public Faculty getFaculty(Long id, Faculty faculty) {
-        return facultyRepository.getFaculty(id, faculty);
-    }
-
-    @Override
-    public Faculty updateFaculty(Long id, Faculty faculty) {
-        return facultyRepository.updateFaculty(id, faculty);
-    }
-
-    @Override
-    public void removeFaculty(Long id) {
-
-    }
-
-    @Override
-    public Faculty getFacultyById(Long id) {
-        return facultyRepository.findById(id).orElseThrow(()-> new FacultyNotFoundException());
-    }
-
-    @Override
-    public Collection<Faculty> getFilteredByColorOrName(String color, String name) {
-        return facultyRepository.getFilteredByColorOrName(color, name);
-    }
-
-    @Override
-    public Collection<Faculty> getAllFaculties() {
-        return facultyRepository.getAllFaculties();
+        return facultyRepository.findAll();
     }
 
     @Override
     public Faculty findFaculty(Long id) {
-        return facultyRepository.findFaculty(id);
+        return facultyRepository.findById(id).orElseThrow(() -> new FacultyNotFoundException());
     }
 
     @Override
@@ -76,36 +33,23 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Object editFaculty(Faculty any) {
-        return facultyRepository.editFaculty(any);
+    public Faculty editFaculty(Faculty faculty) {
+        return facultyRepository.save(faculty);
     }
 
     @Override
-    public Object addFaculty(Faculty any) {
-        return facultyRepository.addFaculty(any);
+    public Faculty addFaculty(Faculty faculty) {
+        return facultyRepository.save(faculty);
     }
 
     @Override
     public Collection<Faculty> findByColor(String color) {
-        return facultyRepository.findByColor(color);
+        return facultyRepository.findAll();
     }
 
     @Override
     public Collection<Faculty> findByNameOrColorContainsIgnoreCase(String filter) {
-        return facultyRepository.findByNameOrColorContainsIgnoreCase(filter);
-    }
-
-    @Override
-    public Optional<List<String>> findLongestFacultyNames() {
-        return facultyRepository
-                .findAll()
-                .stream()
-                .map(Faculty::getName)
-                .collect(Collectors.groupingBy(String::length))
-                .entrySet()
-                .stream()
-                .max(Map.Entry.comparingByKey())
-                .map(Map.Entry::getValue);
+        return facultyRepository.findByColorIgnoreCaseOrNameIgnoreCase(filter);
     }
 }
 

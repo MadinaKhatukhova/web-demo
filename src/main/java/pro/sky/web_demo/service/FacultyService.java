@@ -9,34 +9,17 @@ import java.util.Optional;
 public interface FacultyService {
     List<Faculty> findAll();
 
-    Faculty createFaculty(Faculty faculty);
-
-    Faculty getFaculty();
-
-    Faculty getFaculty(Long id, Faculty faculty);
-
-    Faculty updateFaculty(Long id, Faculty faculty);
-
-    void removeFaculty(Long id);
-
-
-    Faculty getFacultyById(Long id);
-
-    Collection<Faculty> getFilteredByColorOrName(String color, String name);
-
-    Collection<Faculty> getAllFaculties();
-
     Faculty findFaculty(Long id);
 
     void deleteFaculty(Long id);
 
-    Object editFaculty(Faculty any);
+    Faculty editFaculty(Faculty faculty);
 
-    Object addFaculty(Faculty any);
+    Faculty addFaculty(Faculty faculty);
 
     Collection<Faculty> findByColor(String color);
 
     Collection<Faculty> findByNameOrColorContainsIgnoreCase(String filter);
 
-    Optional<List<String>> findLongestFacultyNames();
+
 }

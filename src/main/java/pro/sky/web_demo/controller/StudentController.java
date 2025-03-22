@@ -10,6 +10,7 @@ import pro.sky.web_demo.service.StudentService;
 import java.util.Collection;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
