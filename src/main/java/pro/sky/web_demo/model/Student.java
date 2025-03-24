@@ -1,8 +1,6 @@
 package pro.sky.web_demo.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.util.Objects;
 
 

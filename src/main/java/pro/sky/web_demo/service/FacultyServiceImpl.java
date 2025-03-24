@@ -1,10 +1,8 @@
 package pro.sky.web_demo.service;
-
 import org.springframework.stereotype.Service;
 import pro.sky.web_demo.exception.FacultyNotFoundException;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.repository.FacultyRepository;
-
 import java.util.Collection;
 import java.util.List;
 

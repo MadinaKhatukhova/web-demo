@@ -1,7 +1,5 @@
 package pro.sky.web_demo.service;
-
 import pro.sky.web_demo.model.Faculty;
-
 import java.util.Collection;
 import java.util.List;
 

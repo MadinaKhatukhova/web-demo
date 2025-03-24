@@ -1,5 +1,4 @@
 package pro.sky.web_demo.service;
-
 import pro.sky.web_demo.model.Student;
 
 import java.util.Collection;
