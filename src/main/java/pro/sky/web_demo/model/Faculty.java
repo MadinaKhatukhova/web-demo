@@ -1,28 +1,32 @@
 package pro.sky.web_demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 
 @Entity
+@Table(name = "tbl_faculty", schema = "public")
 public class Faculty {
 
     @Id
     @GeneratedValue
+    @Column(name = "id_faculty")
     private long id;
 
+    @Column(name = "nm_name")
     private String name;
 
+    @Column(name = "nm_color")
     private String color;
 
-    @OneToMany
-    private Collection<Student> students;
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Student> students;
 
     public Faculty(){
 
@@ -33,7 +37,9 @@ public class Faculty {
         this.color = color;
     }
 
-    public Faculty(String griffindor) {
+    public Faculty(Long id, String name) {
+        super();
+        this.id = id;
     }
 
     public long getId() {
@@ -60,24 +66,26 @@ public class Faculty {
         this.color = color;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Faculty faculty = (Faculty) o;
-        return id == faculty.id && Objects.equals(name, faculty.name) && Objects.equals(color, faculty.color);
+    public boolean equals(Object object) {
+        return (this ==object
+        || object != null && getClass() == object.getClass()) &&
+                Objects.equals(name, ((Faculty) object).name) &&
+                Objects.equals(color, ((Faculty) object).color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, color);
+        return Objects.hash(name, color);
+    }
+    @Override
+    public String toString() {
+        return String.format("faculty: {id=%s, name='%s', color='%s'}", id, name, color);
     }
 
 
-    public Collection<Student> getStudents(){
-        return students;
-    }
-
-    public void setStudents(Collection<Student> students) {
-        this.students = students;
-    }
 }

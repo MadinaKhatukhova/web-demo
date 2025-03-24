@@ -11,7 +11,7 @@ import pro.sky.web_demo.model.Student;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class StudentControllerRestTemplateTests {
+class StudentControllerRestTemplateTests {
     @LocalServerPort
     private int port;
 

@@ -11,7 +11,7 @@ import org.springframework.http.*;
 import pro.sky.web_demo.model.Faculty;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FacultyControllerRestTemplateTests {
+class FacultyControllerRestTemplateTests {
     @LocalServerPort
     private int port;
 
