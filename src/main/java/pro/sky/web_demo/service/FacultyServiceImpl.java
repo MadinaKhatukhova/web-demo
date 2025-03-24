@@ -1,5 +1,6 @@
 package pro.sky.web_demo.service;
 
+import io.micrometer.observation.Observation;
 import org.springframework.stereotype.Service;
 import pro.sky.web_demo.exception.FacultyNotFoundException;
 import pro.sky.web_demo.model.Faculty;
@@ -16,19 +17,8 @@ public abstract class FacultyServiceImpl implements FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
-
     @Override
     public Faculty createFaculty(Faculty faculty) {
-        return facultyRepository.save(faculty);
-    }
-
-    @Override
-    public Faculty getFaculty() {
-        return facultyRepository.save(getFaculty());
-    }
-
-    @Override
-    public Faculty getFaculty(Long id, Faculty faculty) {
         return facultyRepository.save(faculty);
     }
 
@@ -44,18 +34,15 @@ public abstract class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Collection<Faculty> getFilteredByColorOrName(String color, String name) {
-        return List.of();
+        return facultyRepository.getFilteredByColorOrName(color, name);
     }
 
     @Override
     public Collection<Faculty> getAllFaculties() {
-        return List.of();
+        return facultyRepository.getAllFaculties();
     }
 
-    @Override
-    public Faculty getFacultyById(Long id) {
-        return facultyRepository.findById(id).orElseThrow(() -> new FacultyNotFoundException());
-    }
+
 }
 
 

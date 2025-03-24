@@ -52,11 +52,7 @@ public class FacultyController{
         return ResponseEntity.ok(foundFaculty);
     }
 
-    @DeleteMapping(value = "{id}")
-    public ResponseEntity<Void> deleteFaculty(@PathVariable Long id) {
-        facultyService.deleteFaculty(id);
-        return ResponseEntity.ok().build();
-    }
+
 
     @GetMapping(value = "color", params = "color")
     public ResponseEntity<Collection<Faculty>> findByColor(@RequestParam(name = "color") String color) {
@@ -67,11 +63,7 @@ public class FacultyController{
         return ResponseEntity.ok(faculties);
     }
 
-    @GetMapping(value = "filter", params = "filter")
-    public ResponseEntity<Collection<Faculty>> findByNameOrColorContainsIgnoreCase(
-            @RequestParam(name = "filter") String filter) {
-        Collection<Faculty> faculties = facultyService.findByNameOrColorContainsIgnoreCase(filter);
-        if (faculties == null || faculties.isEmpty()) {
+
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(faculties);

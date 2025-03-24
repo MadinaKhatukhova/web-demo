@@ -7,6 +7,7 @@ import pro.sky.web_demo.repository.StudentRepository;
 
 import java.util.Collection;
 
+
 @Service
 public abstract class StudentServiceImpl implements StudentService {
 
@@ -40,11 +41,8 @@ public abstract class StudentServiceImpl implements StudentService {
 
     @Override
     public Collection<Student> getByAge(Integer min, Integer max) {
-        return studentRepository.findByAgeBetween(min, max);
+        return Collections.singleton((Student) studentRepository.getById(max, min));
     }
 
-    @Override
-    public Student findStudent(Long id) {
-        return null;
-    }
+
 }
