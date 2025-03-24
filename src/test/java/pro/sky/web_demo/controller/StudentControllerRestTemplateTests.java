@@ -1,5 +1,4 @@
 package pro.sky.web_demo.controller;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
 import pro.sky.web_demo.model.Student;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -65,5 +66,6 @@ class StudentControllerRestTemplateTests {
                 new HttpEntity<>(null),
                 Void.class);
         Assertions.assertThat(response.getStatusCode()).isNotNull();
+
     }
 }
