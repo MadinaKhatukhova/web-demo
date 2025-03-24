@@ -7,22 +7,22 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "tbe_student", schema = "public")
+//@Table(name = "tbe_student", schema = "public")
 public class Student {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_student")
+   // @Column(name = "id_student")
     private long id;
 
-    @Column(name = "nm_name")
+    //@Column(name = "nm_name")
     private String name;
 
-    @Column(name = "nn_age")
+    //@Column(name = "nn_age")
     private int age;
 
     @ManyToOne
-    @JoinColumn(name = "id_faculty")
+   // @JoinColumn(name = "id_faculty")
     @JsonIgnore
     private Faculty faculty;
 

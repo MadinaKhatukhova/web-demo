@@ -48,8 +48,8 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Collection<Faculty> findByNameOrColorContainsIgnoreCase(String filter) {
-        return facultyRepository.findByColorIgnoreCaseOrNameIgnoreCase(filter);
+    public Collection<Faculty> findByNameOrColorContainsIgnoreCase(String color, String name) {
+        return facultyRepository.findByColorIgnoreCaseOrNameIgnoreCase(color, name);
     }
 }
 

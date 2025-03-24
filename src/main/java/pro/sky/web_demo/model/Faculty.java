@@ -4,24 +4,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 
 @Entity
-@Table(name = "tbl_faculty", schema = "public")
+//@Table(name = "tbl_faculty", schema = "public")
 public class Faculty {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_faculty")
+  //  @Column(name = "id_faculty")
     private long id;
 
-    @Column(name = "nm_name")
+   // @Column(name = "nm_name")
     private String name;
 
-    @Column(name = "nm_color")
+    //@Column(name = "nm_color")
     private String color;
 
     @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
