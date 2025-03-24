@@ -2,6 +2,7 @@ package pro.sky.web_demo.service;
 
 import io.micrometer.observation.Observation;
 import org.springframework.stereotype.Service;
+import pro.sky.web_demo.exception.FacultyNotFoundException;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.repository.FacultyRepository;
 import java.util.Collection;
@@ -32,11 +33,6 @@ public abstract class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Object getFacultyById(Long id) {
-        return facultyRepository.save(getFaculty());
-    }
-
-    @Override
     public Collection<Faculty> getFilteredByColorOrName(String color, String name) {
         return facultyRepository.getFilteredByColorOrName(color, name);
     }
@@ -45,7 +41,6 @@ public abstract class FacultyServiceImpl implements FacultyService {
     public Collection<Faculty> getAllFaculties() {
         return facultyRepository.getAllFaculties();
     }
-
 
 
 }
