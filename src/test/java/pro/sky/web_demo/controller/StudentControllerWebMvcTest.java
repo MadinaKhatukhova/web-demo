@@ -10,9 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import pro.sky.web_demo.exception.StudentNotFoundException;
 import pro.sky.web_demo.model.Student;
-import pro.sky.web_demo.service.FacultyService;
-import pro.sky.web_demo.service.StudentService;
 
+import pro.sky.web_demo.service.StudentService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +31,6 @@ public class StudentControllerWebMvcTest {
     @MockitoBean
     private StudentService studentService;
 
-    @MockitoBean
-    private FacultyService facultyService;
 
     @Test
     public void getAllStudents() throws Exception {

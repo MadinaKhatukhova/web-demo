@@ -33,6 +33,9 @@ public class Faculty {
         this.color = color;
     }
 
+    public Faculty(String griffindor) {
+    }
+
     public long getId() {
         return id;
     }

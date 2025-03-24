@@ -10,6 +10,7 @@ import pro.sky.web_demo.service.FacultyService;
 import java.util.Collection;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/faculty")
 public class FacultyController {
@@ -31,7 +32,7 @@ public class FacultyController {
         return ResponseEntity.ok(faculties);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id) {
         Faculty faculty = facultyService.findFaculty(id);
         if (faculty == null) {
@@ -41,6 +42,7 @@ public class FacultyController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Faculty createFaculty(@RequestBody Faculty faculty) {
         return (Faculty) facultyService.addFaculty(faculty);
     }
@@ -54,7 +56,7 @@ public class FacultyController {
         return ResponseEntity.ok(foundFaculty);
     }
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFaculty(@PathVariable Long id) {
         facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
@@ -79,7 +81,7 @@ public class FacultyController {
         return ResponseEntity.ok(faculties);
     }
 
-    @GetMapping("{facultyId}/students")
+    @GetMapping("/{facultyId}/students")
     public ResponseEntity<List<Student>> getFacultyStudents(@PathVariable Long facultyId) {
         List<Student> students = (List<Student>) facultyService.findFaculty(facultyId).getStudents();
         if (students == null || students.isEmpty()) {
@@ -87,6 +89,5 @@ public class FacultyController {
         }
         return ResponseEntity.ok(students);
     }
-
 
 }

@@ -22,7 +22,7 @@ public class FacultyControllerRestTemplateTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    void contextLoads()  {
+    void contextLoads()  throws Exception {
         Assertions.assertThat(facultyController).isNotNull();
     }
 
