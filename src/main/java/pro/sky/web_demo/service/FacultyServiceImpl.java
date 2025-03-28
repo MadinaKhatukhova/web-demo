@@ -4,12 +4,19 @@ import pro.sky.web_demo.exception.FacultyNotFoundException;
 import pro.sky.web_demo.model.Faculty;
 import pro.sky.web_demo.repository.FacultyRepository;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
 
     private final FacultyRepository facultyRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(FacultyService.class);
 
     public FacultyServiceImpl(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
@@ -49,6 +56,26 @@ public class FacultyServiceImpl implements FacultyService {
     public Collection<Faculty> findByNameOrColorContainsIgnoreCase(String color, String name) {
         return facultyRepository.findByColorIgnoreCaseOrNameIgnoreCase(color, name);
     }
+
+    // parallel streams
+
+    @Override
+    public String getLongestFacultyName() {
+        logger.info("Was invoked method - getLongestFacultyName");
+        return facultyRepository.findAll().stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElseThrow();
+    }
+
+    @Override
+    public int getSum() {
+        return IntStream.rangeClosed(1, 1_000_000)
+                .parallel()
+                .sum();
+    }
+
+
 }
 
 

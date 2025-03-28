@@ -17,4 +17,11 @@ public interface FacultyService {
     Collection<Faculty> findByColor(String color);
 
     Collection<Faculty> findByNameOrColorContainsIgnoreCase(String color, String name);
+
+
+    // parallel streams
+
+    String getLongestFacultyName();
+
+    int getSum();
 }

@@ -19,5 +19,11 @@ public interface StudentService {
     Collection<Student> findByAgeBetween(Integer age1, Integer age2);
 
     Collection<Student> findByAge(Integer age1);
+
+    // parallel streams
+
+    List<String> getStudentsNameStartsWithA();
+
+    Double getAverageAgeOfStudents();
 }
 
