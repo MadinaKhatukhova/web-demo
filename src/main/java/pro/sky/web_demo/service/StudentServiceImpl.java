@@ -72,4 +72,50 @@ public class StudentServiceImpl implements StudentService {
                 .orElse(0);
     }
 
+    // потоки
+
+    public void printStudentsNamesWithThreads() {
+        List<Student> studentList = studentRepository.findAll();
+
+        System.out.println(studentList.get(0).getName());
+        System.out.println(studentList.get(1).getName());
+
+        new Thread(() -> {
+            System.out.println(studentList.get(2).getName());
+            System.out.println(studentList.get(3).getName());
+        }).start();
+
+        new Thread(() -> {
+            System.out.println(studentList.get(4).getName());
+            System.out.println(studentList.get(5).getName());
+        }).start();
+    }
+
+    @Override
+    public void printStudentsNamesWithSynchronizedThreads() {
+        List<Student> studentList = studentRepository.findAll();
+
+        printStudentName(studentList);
+        printStudentName(studentList);
+
+        new Thread(() -> {
+            printStudentName(studentList);
+            printStudentName(studentList);
+        }).start();
+
+    }
+
+    @Override
+    public void printStudentName(List<Student> studentList) {
+
+    }
+
+    @Override
+    public void printStudentsNameWithThreads() {
+
+    }
+
 }
+
+
+

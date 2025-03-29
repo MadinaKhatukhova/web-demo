@@ -102,5 +102,12 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getAverageAgeOfStudents());
     }
 
+    // потоки
+
+    @GetMapping("/students/print-parallel")
+    public ResponseEntity<String>printStudentNamesWithThreads() {
+        studentService.printStudentsNameWithThreads();
+        return ResponseEntity.ok("Student Names");
+    }
 
 }
